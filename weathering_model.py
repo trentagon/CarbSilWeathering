@@ -1,3 +1,11 @@
+################################################################################
+#This file contains all of the functions necessary to simulate pCO2 in the 
+#atmosphere of a planet with liquid water at the surface. The model is written
+#using the equations of "Constraining the climate and ocean pH of the early
+#Earth with a geological carbon cycle model" by Krissansen-Totten et al. 
+#(2018). Unless otherwise noted, all equation references in this code refer 
+#to the equations of that paper, which is abbreviated as JKT in this code.
+################################################################################
 
 from math import exp, log, log10
 from scipy.integrate import ode
