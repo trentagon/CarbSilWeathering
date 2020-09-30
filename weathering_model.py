@@ -1,23 +1,3 @@
-###############################################################################
-# 7/9/18
-# 
-# This file contains all of the functions necessary to simulate pCO2 in the 
-# atmosphere of a planet with liquid water at the surface. The model is written
-# using the equations of "Constraining the climate and ocean pH of the early
-# Earth with a geological carbon cycle model" by Krissansen-Totten et al. 
-# (2018). Unless otherwise noted, all equation references in this code refer 
-# to the equations of that paper, which is abbreviated as JKT in this code.
-#
-# This code was written by Owen Lehmer, questions can be addressed to:
-#     owen.r.lehmer@nasa.gov
-# 
-#                            RUNNING THE MODEL
-# Steps: 
-# Simply call runWeatheringModel() to run the model. See the end of this file 
-# for an example call to runWeatheringModel(). Uncomment that example and run
-# this file to see the model in action. It's also recommended that you set DEBUG
-# to True for additional model output.
-###############################################################################
 
 from math import exp, log, log10
 from scipy.integrate import ode
