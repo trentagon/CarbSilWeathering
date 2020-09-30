@@ -8,5 +8,6 @@ described in detail in:
 * Lehmer et al. (in prep)
 
 
-##How to run the model
+### How to run the model
+
 

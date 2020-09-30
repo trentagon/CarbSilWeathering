@@ -591,14 +591,4 @@ def surfaceTempFromClimateModel(pCO2, flux):
 
 
 
-#UNCOMMENT the below lines to run the model. Use the ModelInputs() class to 
-#alter the inputs for the model.
-#inpts = ModelInputs()
-#inpts.lum = 0.9
-#[pCO2_out, pH_out, Ts_out], status = runWeatheringModel(inputs=inpts,
-#        guess=None, chem_tol=1.0E-5, chem_max_iter=10)
-#
-#print("Flux: %0.2f"%(inpts.lum))
-#print("pH=%2.3e"%(pH_out))
-#print("pCO2=%2.3e"%(pCO2_out))
-#print("Ts=%2.3e"%(Ts_out))
+
