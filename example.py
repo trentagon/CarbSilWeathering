@@ -1,4 +1,4 @@
-from weathering_model import runWeatheringModel, ModelInputs
+from WeatheringModel import runWeatheringModel, ModelInputs
 
 #First create an input object. Use this object to change the input parameters.
 inpts = ModelInputs()
