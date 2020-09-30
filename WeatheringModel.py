@@ -69,15 +69,11 @@ def runWeatheringModel(inputs=ModelInputs(), guess=None, chem_tol=1.0E-5,
     To run the model for the modern Earth simply call runWeatheringModel() with
     no parameters. 
 
-    The model can be run with a fast numerical solver (scipy.optimize.fsolve)
-    or via manual integration (very slow). If the model is not converging try
-    running the manual mode.
-
     Inputs:
         inputs        - the model inputs parameters, default to the modern Earth
         guess         - a guess for the alkalinity and carbon concentrations in
                         the system. The guess must be an array of the form:
-                        [Co,Ao,Cp,Ap]
+                        [Co,Ao].
         chem_tol      - the tolerance (% difference between runs) that will be 
                         used with the carbon chemistry
         chem_max_iter - the maximum number of iterations allowed during 
