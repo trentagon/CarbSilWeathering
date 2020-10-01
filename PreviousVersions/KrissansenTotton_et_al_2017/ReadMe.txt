@@ -4,23 +4,25 @@ This set of python scripts runs our geological carbon cycle model for the last 1
 
 As a matter of courtesy, we request that people using this code please cite Krissansen-Totton et al. (2017). In the interest of an "open source" approach, we also request that authors who use and modify the code, please send a copy of papers and modified code to the lead author (joshkt@uw.edu)
 
-REQUIREMENTS: Python, including numpy, pylab, and scipy modules.
+Updates this version: Code for performing inverse analyses has been added. 
 
-HOW TO RUN CODE:
+REQUIREMENTS: Python, including numpy, pylab, and scipy modules. Inverse model calculations require emcee and corner.
+
+HOW TO RUN CODE FORWARD MODEL:
 (1) Put all the python scripts and the folder geochemical proxies in the same directory, and ensure python is working in this directory.
-(2) Open Main_code.py and input desired parameter ranges and number of iterations (default parameters reproduce Fig. 2 in main text)
-(3) Run Main_code.py. Code will output model confidence interval alongside proxy data. 
+(2) Open Main_code_forward_modeling.py and input desired parameter ranges and number of iterations (default parameters reproduce Fig. 2 in main text)
+(3) Run Main_code_forward_modeling.py. Code will output model confidence interval alongside proxy data. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 EXPLANATION OF CODE STRUCTURE:
 
 %% Main_code_forward_modeling.py
-This script provides the shell to repeatedly call the forward model and plot the output distributions. Ranges for uncertain parameters and number of forward model calls (“iterations”) can be modified by the user. Modifying anything else may produce errors in the code. Once parameter ranges have been defined, the script calls the forward model once and uses the dimensions of the outputs to define an output array to store all future outputs. The forward model is then called many times (equal to “iterations”) and parameter ranges are randomly sampled for each forward model call. Forward model calls resulting in errors or non-physical outputs are discarded (the code may still produce error messages from these discarded outputs). The remainder of the script calculates 90% confidence intervals for model outputs based on the distribution of outputs, and plots these alongside binned proxy data (see below).
+This script provides the shell to repeatedly call the forward model and plot the output distributions. Ranges for uncertain parameters and number of forward model calls (√íiterations√ì) can be modified by the user. Modifying anything else may produce errors in the code. Once parameter ranges have been defined, the script calls the forward model once and uses the dimensions of the outputs to define an output array to store all future outputs. The forward model is then called many times (equal to √íiterations√ì) and parameter ranges are randomly sampled for each forward model call. Forward model calls resulting in errors or non-physical outputs are discarded (the code may still produce error messages from these discarded outputs). The remainder of the script calculates 90% confidence intervals for model outputs based on the distribution of outputs, and plots these alongside binned proxy data (see below).
 
 %% model_functions.py
 This script contains the following functions which, taken together, define and solve the forward model:
 
-% forward_model - Given parameter inputs, forward_model calculates the initial conditions for the carbon cycle e.g. equilibrium ocean chemistry and modern fluxes. Proportionality constants for carbon cycle functions are also calculated from initial conditions. Next, the ODE solver is called, and the system of equations describing the carbon cycle are solved. The ODE solver only returns DIC and ALK as a function of time for both the ocean and the pore space. These outputs are fed back into Cretaceous_cc to obtain the time evolution for carbon cycle fluxes and ocean chemistry. Selected outputs are returned to Main_code.py. The function has additional lines of code that can be used to check mass balance, but these have been commented out for simplicity.
+% forward_model - Given parameter inputs, forward_model calculates the initial conditions for the carbon cycle e.g. equilibrium ocean chemistry and modern fluxes. Proportionality constants for carbon cycle functions are also calculated from initial conditions. Next, the ODE solver is called, and the system of equations describing the carbon cycle are solved. The ODE solver only returns DIC and ALK as a function of time for both the ocean and the pore space. These outputs are fed back into Cretaceous_cc to obtain the time evolution for carbon cycle fluxes and ocean chemistry. Selected outputs are returned to Main_code_forward_modeling.py. The function has additional lines of code that can be used to check mass balance, but these have been commented out for simplicity.
 
 % system_of_equations - Contains the ODEs that describe the time evolution of the carbon cycle (equation 6 in manuscript). The function takes the current state of the carbon cycle (calculated using the Cretaceous_cc function), and returns the time derivatives of DIC and ALK in the ocean and the pore space. This function is fed into the ODE solver to compute the time evolution of DIC and ALK for the ocean and pore space.
 
@@ -44,7 +46,7 @@ END EXPLANATION OF CODE STRUCTURE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 BINNED PROXY DATA EXPLANATION
 
-The folder geochemical_proxies contains binned proxy data for atmospheric pCO2, ocean saturation state, surface and deep ocean temperature, and ocean pH. These text files are called by Main_code.py which plots them alongside model outputs. There is no text file for seafloor weathering since there is only a single mean Cretaceous data point that is defined in Main_code.py script.
+The folder geochemical_proxies contains binned proxy data for atmospheric pCO2, ocean saturation state, surface and deep ocean temperature, and ocean pH. These text files are called by Main_code_forward_modeling.py which plots them alongside model outputs. There is no text file for seafloor weathering since there is only a single mean Cretaceous data point that is defined in Main_code_forward_modeling.py script.
 
 obs_CO2.txt - binned atmospheric pCO2 proxies, plotted in Fig. S9 in the supplementary materials. Rows refer to time (in Ma), pCO2 (in ppm), and uncertainty in pCO2 (in ppm). See supplementary materials for references.
 
