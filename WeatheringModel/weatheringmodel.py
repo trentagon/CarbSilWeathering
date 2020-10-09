@@ -73,8 +73,8 @@ class ModelInputs:
             print("%s = %2.3e"%(key, val))
 
 
-def runWeatheringModel(inputs, guess=None, steadystate=True, 
-        endtime=10E9, max_step=1E5):
+def runWeatheringModel(inputs, guess=None, steadystate=True, endtime=10E9, 
+        max_step=1E5):
     """
     This is the top level function to run the model. The model inputs can be
     changed by creating an instance of the ModelInputs() class then changing
