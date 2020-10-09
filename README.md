@@ -16,8 +16,8 @@ is based on the model description in Lehmer *et al.* (in prep).
 Import the runWeatheringModel function and the ModelInputs class from the
 WeatheringModel.py file. The model can be run by simply calling
 runWeatheringModel(), which will calculate the steady-state atmospheric carbon
-dioxide level, surface temperature, and ocean pH. An example of how to use the
-model and how to change the model inputs is shown in the example.py file.
+dioxide level, surface temperature, and ocean pH. Examples of how to use the
+model and additional details are in the WeatheringModel directory.
 
 
 #### Need help?
