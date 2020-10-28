@@ -219,7 +219,7 @@ def runWeatheringModel(inputs, guess=None, steadystate=True, endtime=10E9,
     
     pCO2_t = [pCO2_guess] #track the current pCO2
     res = solve_ivp(lambda t, y: calculateModelDerivatives(t, y, pCO2_t),
-            (0, endtime), initial_val, method='LSODA', events=event,
+            (0, endtime), initial_val, method='RK45', events=event,
             t_eval=times, max_step=max_step)
     times = res.t #should be the same as times
     Co_arr = res.y[0,:]
